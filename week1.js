@@ -15,29 +15,19 @@
 */
 
 const calcCaptcha = (str) => {
-  const arr = str.split('');
-  const numbersToSum = [];
-
   let sum = 0;
 
-  for(let i = 0; i < arr.length; i++) {
-    if (arr[i + 1] === arr[i]) {
-      numbersToSum.push(parseInt(arr[i + 1]));
+  for(let i = 0; i < str.length; i++) {
+    if (str[i + 1] === str[i]) {
+      sum += parseInt(str[i + 1]);
     }
 
-    if (i === arr.length - 1) {
-      if (arr[0] === arr[i]) {
-        numbersToSum.push(parseInt(arr[0]));
+    if (i === str.length - 1) {
+      if (str[0] === str[i]) {
+        sum += parseInt(str[0]);
       }
     }
   }
-
-  if (numbersToSum.length) {
-    sum = numbersToSum.reduce((a, b) => {
-      return a + b;
-    })
-  }
-
 
   console.log(sum);
 
