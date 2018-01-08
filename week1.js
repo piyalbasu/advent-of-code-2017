@@ -29,8 +29,6 @@ const calcCaptcha = (str) => {
     }
   }
 
-  console.log(sum);
-
   return sum;
 }
 
