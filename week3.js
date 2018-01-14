@@ -28,47 +28,31 @@ puzzle input all the way to the access port?
 */
 
 const stepGen = (num) => {
-  const testMatrix = {
-    1: [0, 0],
-    2: [1, 0],
-    3: [1, 1],
-    4: [0, 1],
-    5: [-1, 1],
-    6: [-1, 0],
-    7: [-1, -1],
-    8: [0, -1],
-    9: [1, -1]
-  };
   let x = 0,
     y = 0,
     rowLen = 1,
     rowHeight = 0,
     direction = 'right';
-    matrix = [x, y];
 
   if (num === 1) {
-    return matrix;
+    return 0;
   }
 
   for (let i = 2; i <= num; i++) {
     if(direction === 'right') {
       x++;
-      matrix[0] = x;
       if (x === rowLen) {
         direction = 'up';
         rowHeight++;
       }
     } else if(direction === 'up') {
       y++;
-      matrix[1] = y;
       direction = y === rowHeight ? 'left' : direction;
     } else if (direction === 'left') {
       x--;
-      matrix[0] = x;
       direction = x === -rowLen ? 'down' : direction;
     } else {
       y--;
-      matrix[1] = y;
       if (y === -rowHeight) {
         direction = 'right';
         rowLen++;
@@ -76,7 +60,7 @@ const stepGen = (num) => {
     }
   }
 
-  return matrix;
+  return Math.abs(x) + Math.abs(y);
 };
 
 module.exports.stepGen = stepGen;
